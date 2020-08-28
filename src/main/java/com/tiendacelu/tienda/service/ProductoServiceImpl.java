@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoServiceImpl implements  IProductoService{
@@ -16,5 +17,30 @@ public class ProductoServiceImpl implements  IProductoService{
     @Override
     public List<Producto> listar() {
         return productoDAO.findAll();
+    }
+
+    @Override
+    public Producto registrar(Producto producto) {
+        return productoDAO.save(producto);
+    }
+
+    @Override
+    public Producto actualizar(Producto producto) {
+        return productoDAO.save(producto);
+    }
+
+    @Override
+    public Producto buscar(Long id) {
+        return productoDAO.findById(id).get();
+    }
+
+    @Override
+    public boolean eliminar(Long id) {
+        Optional<Producto> producto = productoDAO.findById(id);
+        if(producto.isPresent()) {
+            productoDAO.delete(producto.get());
+            return true;
+        }
+        return false;
     }
 }
