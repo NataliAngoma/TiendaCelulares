@@ -25,7 +25,7 @@ public class MarcaController {
     }
 
     @PostMapping(value = "crear")
-    public ResponseEntity<Marca> crear(Marca marca) {
+    public ResponseEntity<Marca> crear(@RequestBody Marca marca) {
         marca.setNombreMarca(marca.getNombreMarca() + " - Modificado");
         return  new ResponseEntity<>(marca, HttpStatus.OK);
     }
