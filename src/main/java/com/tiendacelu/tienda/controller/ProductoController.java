@@ -1,5 +1,6 @@
 package com.tiendacelu.tienda.controller;
 
+import com.tiendacelu.tienda.model.Celular;
 import com.tiendacelu.tienda.model.Producto;
 import com.tiendacelu.tienda.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,34 @@ public class ProductoController {
     @Autowired
     private IProductoService service;
 
-    @GetMapping
-    public ResponseEntity<List<Producto>> listar () {
-        List<Producto> lista = service.listar();
-        if (lista == null) lista = new ArrayList<Producto>();
+   /* @GetMapping(value = "buscar")
+    public ResponseEntity<List<Producto>> buscarModeloYPrecio(String modelo,Long precio) {
+        List<Producto> lista = service.buscarModeloYPrecio(modelo, precio);
+        if (lista == null ) lista = new ArrayList<Producto>();
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
-/*    @GetMapping(value = "buscar/{id}")
-    public ResponseEntity<Producto> buscar (@PathVariable("id") Long id ) {
-        Producto producto service.buscar(id);
-
+    @GetMapping(value = "buscarproducto")
+    public ResponseEntity<List<Producto>> buscarProducto(Long id) {
+        List<Producto> lista = service.buscarProducto(id);
+        if (lista == null ) lista = new ArrayList<Producto>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
     }*/
 
+    @GetMapping(value = "listarproducto")
+    public ResponseEntity<List<Producto>> listarProductos() {
+        List<Producto> lista = service.listarProductos();
+        if (lista == null ) lista = new ArrayList<Producto>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "listarcelus")
+    public ResponseEntity<List<Celular>> listarCelus() {
+        List<Celular> lista = service.listarCelulares();
+        if (lista == null ) lista = new ArrayList<Celular>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
 
 
 }

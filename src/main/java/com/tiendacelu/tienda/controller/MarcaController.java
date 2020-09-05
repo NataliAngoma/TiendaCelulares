@@ -19,7 +19,7 @@ public class MarcaController {
     @Autowired
     private IMarcaService service;
 
-    @GetMapping
+    /* @GetMapping
     public ResponseEntity<List<Marca>> listar() {
         List<Marca> lista = service.listar();
         if (lista==null) lista=new ArrayList<Marca>();
@@ -38,10 +38,10 @@ public class MarcaController {
         return new ResponseEntity<Page<Marca>>(marcas, HttpStatus.OK);
     }
 
-    /*@PostMapping(value = "crear")
+    /77 @PostMapping(value = "crear")
     public ResponseEntity<Marca> crear(@RequestBody Marca marca) {
         marca.setNombreMarca(marca.getNombreMarca() + " - Modificado");
-        return  new ResponseEntity<>(marca, HttpStatus.OK);}*/
+        return  new ResponseEntity<>(marca, HttpStatus.OK);} 77/
 
     @PostMapping(value = "crear")
     public ResponseEntity<Marca>guardar(Marca marca){
@@ -59,6 +59,45 @@ public class MarcaController {
     @DeleteMapping(value = "eliminar/{id}")
     public boolean eliminar(@PathVariable("id") Long id) {
         return service.eliminar(id);
+    } */
+
+    @GetMapping(value = "buscar")
+    public ResponseEntity<List<Marca>> buscarNombre(String nombre) {
+        List<Marca> lista = service.buscarNombre(nombre);
+        if (lista==null) lista=new ArrayList<Marca>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+    @GetMapping(value= "buscarMarca")
+    public ResponseEntity<List<Marca>> buscarMarca (Long id){
+        List<Marca> lista =service.buscarMarca(id);
+        if (lista==null) lista= new ArrayList<Marca>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
+    @GetMapping(value = "buscarmarcaprocedure")
+    public ResponseEntity<List<Marca>> listarMarcaProcedure() {
+        List<Marca> lista = service.listarMarcaProcedure();
+        if (lista == null) lista = new ArrayList<Marca>();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+
+    /*@PostMapping(value = "crear")
+    public ResponseEntity<Marca>guardar(Marca marca){
+        Marca mar = service.registrar(marca);
+        if(mar==null) return  new ResponseEntity<Marca>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Marca>(mar, HttpStatus.OK);
+    }
+    @PostMapping(value="modificar")
+    public ResponseEntity<Marca>modificar(@RequestBody Marca marca){
+        Marca mar =service.modificar(marca);
+        if (mar==null) return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(mar, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "eliminar/{id}")
+    public boolean eliminar(@PathVariable("id") Long id) {
+        return service.eliminar(id);
+    }
+*/
 }

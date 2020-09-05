@@ -1,19 +1,21 @@
 package com.tiendacelu.tienda.service;
 
+import com.tiendacelu.tienda.model.Celular;
+import com.tiendacelu.tienda.model.Marca;
 import com.tiendacelu.tienda.model.Producto;
 
 import java.util.List;
 
 public interface IProductoService {
 
-    List<Producto> listar();
+   /* List<Producto> buscarModeloYPrecio(String modelo, Long precio);
 
-    Producto registrar(Producto producto);
+    List<Producto> buscarProducto(Long id);*/
 
-    Producto actualizar(Producto producto);
+    List<Producto> listarProductoNativo();
 
-    Producto buscar(Long id);
+    List<Celular> listarCelulares();
 
-    boolean eliminar(Long id);
+    List<Producto> listarProductos();
 
 }
